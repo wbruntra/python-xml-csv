@@ -19,15 +19,15 @@ if remote:
 else:
     with open(local_file, 'rb') as f:
         page = f.read()
-
 soup = BeautifulSoup(page, "xml")
-plants = soup.findAll(xml_item_name)
+
+items = soup.findAll(xml_item_name)
 
 with open(output_file, 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=delimiter)
     writer.writerow(columns)
-    for plant in plants:
+    for item in item:
         row = []
         for column in columns:
-            row.append(plant.find(column).string)
+            row.append(item.find(column).string)
         writer.writerow(row)
