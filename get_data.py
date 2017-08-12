@@ -10,7 +10,7 @@ remote = True
 url = "https://www.w3schools.com/Xml/plant_catalog.xml"
 local_file = 'plant_catalog.xml'
 
-xml_item_name = 'PLANTS'
+xml_item_name = 'PLANT'
 columns = ['COMMON', 'LIGHT','PRICE']
 ##
 
