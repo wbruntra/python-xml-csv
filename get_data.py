@@ -2,11 +2,16 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
+def read_file(name):
+    with open(name, 'rb') as f:
+        result = f.read()
+    return result
+
 ## Config
 output_file = 'plants.csv'
 delimiter = ','
 
-remote = False
+remote = True
 url = "https://www.w3schools.com/Xml/plant_catalog.xml"
 local_file = 'plant_catalog.xml'
 
@@ -14,11 +19,9 @@ xml_item_name = 'PLANT'
 columns = ['COMMON', 'LIGHT','PRICE']
 ##
 
-if remote:
-    page = requests.get(url).content
-else:
-    with open(local_file, 'rb') as f:
-        page = f.read()
+page = (requests.get(url).content if remote else
+        read_file(local_file))
+
 soup = BeautifulSoup(page, "xml")
 
 items = soup.findAll(xml_item_name)
