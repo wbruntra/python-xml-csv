@@ -6,7 +6,7 @@ import csv
 output_file = 'plants.csv'
 delimiter = ','
 
-remote = True
+remote = False
 url = "https://www.w3schools.com/Xml/plant_catalog.xml"
 local_file = 'plant_catalog.xml'
 
@@ -29,5 +29,8 @@ with open(output_file, 'w', newline='') as csvfile:
     for item in items:
         row = []
         for column in columns:
-            row.append(item.find(column).string)
+            try:
+                row.append(item.find(column).string)
+            except AttributeError:
+                row.append('')
         writer.writerow(row)
