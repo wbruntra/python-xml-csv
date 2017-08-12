@@ -26,7 +26,7 @@ items = soup.findAll(xml_item_name)
 with open(output_file, 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=delimiter)
     writer.writerow(columns)
-    for item in item:
+    for item in items:
         row = []
         for column in columns:
             row.append(item.find(column).string)
